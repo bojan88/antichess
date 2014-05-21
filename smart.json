@@ -1,0 +1,11 @@
+{
+  "packages": {
+    "iron-router": {},
+    "loading": {},
+    "bootstrap-3": {},
+    "font-awesome": {},
+    "user-status": {},
+    "publish-with-relations": {},
+    "accounts-entry": {}
+  }
+}

@@ -1,0 +1,71 @@
+<template name="widget">
+	<div class="col-md-4 widget chat-widget">
+		<div class="widget-header">
+			<ul class="nav nav-tabs">
+				<li class="active"><a href="#events" data-toggle="tab">Events</a></li>
+				<li><a href="#chat" data-toggle="tab">Chat<span class="badge">{{countNewMessages}}</span></a></li>
+			</ul>
+		</div>
+		<div class="tab-content">
+			<div id="chat" class="tab-pane">
+				<div id="chat-message-container" class="chat-message-container"></div>
+			<div id="send-message" class="send-message">
+				<input type="text" placeholder="Type message" maxlength="255" />
+			</div>
+		</div>
+		<div id="events" class="tab-pane active">
+			<div class="row">
+				<div class="col-md-6">
+					<div class="pieces row">
+						<div class="white-pieces-left pieces-left col-md-6">
+						{{#each pieces}}
+							{{#if isWhite color}}
+								<img src ='http://chessboardjs.com/img/chesspieces/wikipedia/{{piece}}.png' />
+							{{/if}}
+						{{/each}}
+						</div>
+						<div class="black-pieces-left pieces-left col-md-6">
+						{{#each pieces}}
+							{{#if isBlack color}}
+								<img src ='http://chessboardjs.com/img/chesspieces/wikipedia/{{piece}}.png' />
+							{{/if}}
+						{{/each}}
+						</div>
+					</div>
+					<div class="controls">
+						{{#if inPlay}}
+							<button type="button" id="draw-button" class="btn btn-default btn-sm" disabled="{{isDrawDisabled}}">Draw</button>
+							<button type="button" id="resign-button" class="btn btn-default btn-sm">Resign</button>
+						{{/if}}
+						{{#if isWaiting}}
+							<span>waiting...</span>
+						{{/if}}
+						{{#if isGameDrawn}}
+							<span>draw</span>
+						{{/if}}
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="moves-container" id="moves-container"></div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div id="alerts" class="alerts-container"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+</template>
+
+<template name="alert">
+	<p>{{message}}</p>
+</template>
+
+<template name="message">
+	<div class="chat-message-outer">
+		<abbr class="inner-name">{{name}}:</abbr>
+		{{message}}
+	</div>
+</template>

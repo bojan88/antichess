@@ -1,0 +1,113 @@
+<template name="game">
+  <div class="row">
+	<div class="col-md-6 widget">
+		{{> player_info blackPlayerData}}
+		<div id="board">
+			{{#each cells}}
+				<div class="cell {{getColor color clicked}}" id="{{id}}">
+					{{#if piece}}
+						{{#if promote}}
+							{{> promotion_box}}
+						{{else}}
+							<div class="cell-inner">
+									<img src ='http://chessboardjs.com/img/chesspieces/wikipedia/{{piece}}.png' />
+							</div>
+						{{/if}}
+					{{/if}}
+				</div>
+			{{/each}}
+		</div>
+		{{> player_info whitePlayerData}}
+		</div>
+		{{> widget }}
+	</div>
+	{{> end_game_modal}}
+	{{> draw_request_modal}}
+	{{> invite_friend_modal}}
+</template>
+
+<template name="player_info">
+	<div class="player-info-box">
+		{{#if avatar_url}}
+			<img class="img-rounded" src="{{avatar_url}}"/>
+		{{else}}
+			<i class="icon user"></i>
+		{{/if}}
+		<div class="player-info">
+			{{name}}
+		</div>
+		<div class="player-status {{getUserStatus status}}"></div>
+		{{#if time}}
+			<div class="timer pull-right">{{time.minutes}}:{{time.seconds}}</div>
+		{{/if}}
+	</div>
+</template>
+
+<template name="promotion_box">
+	<div class="promotion">
+		<div id="Q" class="promotion-box cell-inner">
+			<img src ='http://chessboardjs.com/img/chesspieces/wikipedia/{{getPieceColor piece}}Q.png' />
+		</div>
+		<div id="R" class="promotion-box cell-inner">
+			<img src ='http://chessboardjs.com/img/chesspieces/wikipedia/{{getPieceColor piece}}R.png' />
+		</div>
+		<div id="B" class="promotion-box cell-inner">
+			<img src ='http://chessboardjs.com/img/chesspieces/wikipedia/{{getPieceColor piece}}B.png' />
+		</div>
+		<div id="N" class="promotion-box cell-inner">
+			<img src ='http://chessboardjs.com/img/chesspieces/wikipedia/{{getPieceColor piece}}N.png' />
+		</div>
+	</div>
+</template>
+
+<template name="end_game_modal">
+	<div id="end-game-modal" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title">Game over</h4>
+				</div>
+				<div class="modal-body">
+					<p>{{winning_message}} won&hellip;</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</template>
+
+<template name="draw_request_modal">
+	<div id="draw-request-modal" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title">Draw</h4>
+				</div>
+				<div class="modal-body">
+					<p>{{player}} requested a draw&hellip;</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="accept-draw" class="btn btn-default" data-dismiss="modal">Accept</button>
+					<button type="button" id="reject-draw" class="btn btn-primary" data-dismiss="modal">Reject</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</template>
+
+<template name="invite_friend_modal">
+	<div id="invite-friend-modal" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title">Invite a friend</h4>
+				</div>
+				<div class="modal-body">
+					<p>Just send him the url of the page.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</template>

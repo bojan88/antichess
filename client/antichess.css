@@ -1,0 +1,350 @@
+/* CSS declarations go here */
+
+html,body {
+    height:100%;
+}
+
+body{
+	margin:0;
+	padding:0
+}
+
+.navbar {
+	margin: 0;
+	height: 40px;
+	min-height: 40px;
+}
+
+#board {
+	width: 512px;
+	height: 512px;
+	padding: 0;
+	margin: auto;
+}
+.cell {
+	width: 64px;
+	height: 64px;
+	float: left;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.cell.white {
+	background-color: #E6E6E6;
+}
+.cell.black {
+	background-color: #676767;
+}
+.cell.clicked {
+	background-color: #2c8530;
+}
+
+.cell-inner {
+	width: 100%;
+	height: 100%;
+	padding-top: 5px;
+}
+
+.cell-inner > img {
+	width: 50px;
+	height: 50px;
+	display: block;
+	margin: auto;
+}
+
+.cell-inner.taking-from {
+    background-color: #2c8530;
+    -moz-border-radius: 100px;
+    -webkit-border-radius: 100px;
+}
+.cell-inner.taking-to {
+	background-color: #F7F887;
+    -moz-border-radius: 100px;
+    -webkit-border-radius: 100px;
+}
+
+
+.login {
+	width: 100%;
+	height: 100%;
+	background-color: #E6E6E6;
+}
+.login-box {
+	margin: auto;
+	position: absolute;
+	top: 0; left: 0; bottom: 0; right: 0;
+	width: 250px;
+	height: 150px;
+	background-color: #FFFFFF;
+}
+#login-buttons {
+	height: 30px;
+	width: 165px; 
+	 position:absolute;
+    left:50%;
+    top:50%;
+    margin:-15px 0 0 -83px;
+}
+
+.fa-facebook:before {
+	content: "\f09a";
+}
+
+.fa {
+	display: inline-block;
+	font-family: FontAwesome;
+	font-style: normal;
+	font-weight: normal;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.promotion {
+	height: 64px;
+	width: 256px;
+	position: relative;
+	left: -128px;
+}
+
+#b1 .promotion, #b8 .promotion {
+	left: -64px;
+}
+
+#a1 .promotion, #a8 .promotion {
+	left: 0;
+}
+
+/*#g1 .promotion, #g7 .promotion {
+	left: -192px;
+}*/
+
+#h1 .promotion, #h7 .promotion {
+	left: -192px;
+}
+
+.promotion-box {
+	width: 64px;
+	height: 64px;
+	float: left;
+}
+
+.promotion-box:hover {
+	background-color: #2c8530;
+}
+
+.promotion-box > img{
+	width: 58px;
+	height: 58px;
+}
+
+.player-info-box {
+	width: 512px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	padding-left: 50px;
+	height: 35px;
+}
+
+.player-info-box  img {
+	width: 35px;
+	height: 35px;
+	vertical-align: middle;
+}
+
+.player-info {
+	display: inline-block;
+}
+
+.chat-widget {
+	/*margin-top: 45px;*/
+}
+
+#chat-message-container {
+	overflow-y: scroll;
+	height: 250px;
+}
+
+.moves-container {
+	overflow-y: scroll;
+	height: 130px;
+
+	margin-top: 10px;
+	margin-right: 5px;
+
+	-webkit-box-shadow: -1px 0px 25px 2px rgba(0,0,0,0.75);
+	-moz-box-shadow: -1px 0px 25px 2px rgba(0,0,0,0.75);
+	box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.25);
+}
+
+.alerts-container {
+	overflow-y: scroll;
+	height: 130px;
+
+	margin: 10px 5px;
+
+	-webkit-box-shadow: -1px 0px 25px 2px rgba(0,0,0,0.75);
+	-moz-box-shadow: -1px 0px 25px 2px rgba(0,0,0,0.75);
+	box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.25);
+}
+
+
+.send-message {
+	padding: 10px;
+	background: #fff;
+	border-top: 1px solid #ddd;
+	-moz-border-radius-topleft: 0;
+	-webkit-border-top-left-radius: 0;
+	-khtml-border-radius-topleft: 0;
+	border-top-left-radius: 0;
+	-moz-border-radius-topright: 0;
+	-webkit-border-top-right-radius: 0;
+	-khtml-border-radius-topright: 0;
+	border-top-right-radius: 0;
+	-moz-border-radius-bottomright: 4px;
+	-webkit-border-bottom-right-radius: 4px;
+	-khtml-border-radius-bottomright: 4px;
+	border-bottom-right-radius: 4px;
+	-moz-border-radius-bottomleft: 4px;
+	-webkit-border-bottom-left-radius: 4px;
+	-khtml-border-radius-bottomleft: 4px;
+	border-bottom-left-radius: 4px;
+}
+
+.send-message input {
+	font-size: 16px;
+	padding: 5px 10px;
+	width: 100%;
+	border: 1px solid #cacaca;
+	outline: 0;
+	-moz-border-radius-topleft: 5px;
+	-webkit-border-top-left-radius: 5px;
+	-khtml-border-radius-topleft: 5px;
+	border-top-left-radius: 5px;
+	-moz-border-radius-topright: 5px;
+	-webkit-border-top-right-radius: 5px;
+	-khtml-border-radius-topright: 5px;
+	border-top-right-radius: 5px;
+	-moz-border-radius-bottomright: 5px;
+	-webkit-border-bottom-right-radius: 5px;
+	-khtml-border-radius-bottomright: 5px;
+	border-bottom-right-radius: 5px;
+	-moz-border-radius-bottomleft: 5px;
+	-webkit-border-bottom-left-radius: 5px;
+	-khtml-border-radius-bottomleft: 5px;
+	border-bottom-left-radius: 5px;
+	vertical-align: middle;
+	display: inline-block;
+	-webkit-transition: all .3s ease;
+	-moz-transition: all .3s ease;
+	-ms-transition: all .3s ease;
+	-o-transition: all .3s ease;
+	transition: all .3s ease;
+}
+
+.widget {
+	/*width: 250px;*/
+	padding: 0;
+	border: 1px solid #ccc;
+	margin-left: 10px;
+	margin-bottom: 10px;
+	background: #fdfdfd;
+	-moz-border-radius-topleft: 4px;
+	-webkit-border-top-left-radius: 4px;
+	-khtml-border-radius-topleft: 4px;
+	border-top-left-radius: 4px;
+	-moz-border-radius-topright: 4px;
+	-webkit-border-top-right-radius: 4px;
+	-khtml-border-radius-topright: 4px;
+	border-top-right-radius: 4px;
+	-moz-border-radius-bottomright: 4px;
+	-webkit-border-bottom-right-radius: 4px;
+	-khtml-border-radius-bottomright: 4px;
+	border-bottom-right-radius: 4px;
+	-moz-border-radius-bottomleft: 4px;
+	-webkit-border-bottom-left-radius: 4px;
+	-khtml-border-radius-bottomleft: 4px;
+	border-bottom-left-radius: 4px;
+}
+
+.inner-name {
+	color: #3498db;
+}
+
+.pieces-left img{
+	width: 24px;
+	height: 24px;
+	margin-left: -5px;
+	margin-right: -5px;
+}
+
+.pieces-left {
+	margin-top: 10px;
+}
+
+.white-pieces-left {
+	margin-left: 5px;
+}
+.black-pieces-left {
+	margin-left: -5px;
+}
+
+.controls {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	text-align: center
+}
+
+.move-row {
+	margin: 0;
+	text-align: center;
+}
+
+#explain {
+	font-size: 24px;
+}
+
+#games-list {
+	width: 500px;
+	margin-top: 50px;
+}
+
+#new-game-controls {
+	margin-bottom: 10px;
+	float: right;
+}
+
+#create-game-btn {
+	margin-left: 15px;
+}
+
+a[data-toggle="tab"] > .badge {
+	margin-left: 5px;
+}
+
+.player-status {
+	display: inline-block;
+	width: 10px;
+	height: 10px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+}
+
+.player-status.online {
+	background-color: green;
+}
+
+.player-status.offline {
+	background-color: red;
+}
+
+.player-status.none {
+	display: none;
+}
+
+.timer {
+	height: 100%;
+	display: flex;
+	align-items: center;
+}

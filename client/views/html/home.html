@@ -1,0 +1,88 @@
+<template name="home">
+	<div id="explain">
+		Antichess (also known as Losing chess, the Losing Game, Giveaway chess, Suicide chess, Killer chess, or Take-all chess) is a chess variant in which the objective of each player is to lose all of his pieces or be stalemated, that is, a misère version
+	</div>
+	<div class="row">
+		<div class="center-block" id="games-list">
+			<div class="center-block">
+				<div id="new-game-controls">
+					Join or <button id="create-game-btn" type="button" class="btn btn-primary">Create New Game</button>
+				</div>
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Player Name</th>
+							<th>Color</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						{{#each games}}
+							{{#with usersOnline}}
+								<tr>
+									<td>{{player_name}}</td>
+									<td>{{getNewPlayerColor}}</td>
+									<td><a href="{{getGameUrl _id}}">Join</a></td>
+								</tr>
+							{{/with}}
+						{{/each}}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	{{> login_modal}}
+</template>
+
+<template name="login_modal">
+	<div id="login-modal" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					{{#if currentUser}}
+						<h4 class="modal-title">Create Game</h4>
+					{{else}}
+						<h4 class="modal-title">Log In</h4>
+					{{/if}}
+				</div>
+				<div class="modal-body">
+					{{#if currentUser}}
+						<div class="btn-group" data-toggle="buttons">
+							<label class="btn btn-primary active">
+								<input type="radio" name="color" value="white"> White
+							</label>
+							<label class="btn btn-primary">
+								<input type="radio" name="color" value="black"> Black
+							</label>
+						</div>
+						<div class="btn-group" data-toggle="buttons">
+							<label class="btn btn-primary">
+								<input type="radio" name="duration" value="5"> 5min
+							</label>
+							<label class="btn btn-primary active">
+								<input type="radio" name="duration" value="10"> 10min
+							</label>
+							<label class="btn btn-primary">
+								<input type="radio" name="duration" value="20"> 20min
+							</label>
+							<label class="btn btn-primary">
+								<input type="radio" name="duration" value="30"> 30min
+							</label>
+							<label class="btn btn-primary">
+								<input type="radio" name="duration" value="60"> 1h
+							</label>
+						</div>
+					{{else}}
+						{{> loginButtons}}
+					{{/if}}
+				</div>
+				{{#if currentUser}}
+					<div class="modal-footer">
+						<button type="button" id="create-game" class="btn btn-primary" data-dismiss="modal">Create</button>
+					</div>
+				{{/if}}
+			</div>
+		</div>
+	</div>
+</template>
