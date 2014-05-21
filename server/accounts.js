@@ -1,4 +1,11 @@
 Accounts.onCreateUser(function(options, user) {
+	if(user.services.password) {
+		user.profile = {
+			avatar_url: '/img/profile_img.jpg',
+			name: user.username
+		}
+		delete user.username;
+	}
 	if (user.services.facebook) {
 		user.profile = {
 			avatar_url: 'http://graph.facebook.com/' + user.services.facebook.id + '/picture',

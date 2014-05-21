@@ -86,6 +86,8 @@ Meteor.publish('gameMoves', function(game_id) {
 
 Meteor.users.find().observe({
 	changed: function(newDoc, oldDoc) {
+		if(!newDoc.status || !oldDoc.status)
+			return;
 		if(newDoc.status.online === oldDoc.status.online)
 			return;
 		Games.update({

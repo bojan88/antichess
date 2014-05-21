@@ -40,9 +40,12 @@ Template.login_modal.events({
 				console.warn(err);
 				return;
 			}
-			$('#login-modal').modal('hide');
-			$(".modal-backdrop").hide();
 			Router.go("game", {_id: res});
 		});
 	}
-})
+});
+
+Template.login_modal.destroyed = function() {
+	$('#login-modal').modal('hide');
+	$(".modal-backdrop").hide();
+}

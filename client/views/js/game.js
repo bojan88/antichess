@@ -32,6 +32,19 @@ Template.draw_request_modal.player = function() {
 	return Session.get("draw_requester");
 }
 
+Template.end_game_modal.destroyed = function() {
+	$('#end-game-modal').modal('hide');
+	$(".modal-backdrop").hide();
+}
+Template.draw_request_modal.destroyed = function() {
+	$('#draw-request-modal').modal('hide');
+	$(".modal-backdrop").hide();
+}
+Template.invite_friend_modal.destroyed = function() {
+	$('#invite-friend-modal').modal('hide');
+	$(".modal-backdrop").hide();
+}
+
 Template.game.cells = function() {
 	var cells_array = [];
 	var game = Games.findOne(Session.get("game_id"));
