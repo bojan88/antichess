@@ -10,7 +10,7 @@
 							{{> promotion_box}}
 						{{else}}
 							<div class="cell-inner">
-									<img src ='http://chessboardjs.com/img/chesspieces/wikipedia/{{piece}}.png' />
+									<img src ='/img/pieces/{{piece}}.png' />
 							</div>
 						{{/if}}
 					{{/if}}
@@ -46,16 +46,16 @@
 <template name="promotion_box">
 	<div class="promotion">
 		<div id="Q" class="promotion-box cell-inner">
-			<img src ='http://chessboardjs.com/img/chesspieces/wikipedia/{{getPieceColor piece}}Q.png' />
+			<img src ='/img/pieces/{{getPieceColor piece}}Q.png' />
 		</div>
 		<div id="R" class="promotion-box cell-inner">
-			<img src ='http://chessboardjs.com/img/chesspieces/wikipedia/{{getPieceColor piece}}R.png' />
+			<img src ='/img/pieces/{{getPieceColor piece}}R.png' />
 		</div>
 		<div id="B" class="promotion-box cell-inner">
-			<img src ='http://chessboardjs.com/img/chesspieces/wikipedia/{{getPieceColor piece}}B.png' />
+			<img src ='/img/pieces/{{getPieceColor piece}}B.png' />
 		</div>
 		<div id="N" class="promotion-box cell-inner">
-			<img src ='http://chessboardjs.com/img/chesspieces/wikipedia/{{getPieceColor piece}}N.png' />
+			<img src ='/img/pieces/{{getPieceColor piece}}N.png' />
 		</div>
 	</div>
 </template>
