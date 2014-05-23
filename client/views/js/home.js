@@ -1,5 +1,6 @@
 Template.home.games = function() {
-	return Games.find({}, {sort: {_id: 1}});
+	console.log(Games.find().fetch())
+	return Games.find({}, {sort: {createdAt: 1}});
 }
 
 Template.home.usersOnline = function() {
