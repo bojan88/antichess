@@ -449,13 +449,14 @@ BoardMatrix.prototype._validateTakings = function() {
 			var is_take_move = false;
 			_.each(takings, function(take_move) {
 				if (take_move.to[0] === self.chech_from[0] && take_move.to[1] === self.chech_from[1]) { //we can take it - true
-					var old_move = self.move;
+					var old_move = self.move, old_chech_from = self.chech_from;
 					self.move = take_move;
 					self._moveOnBoard();
 					if(!self._isChech())
 						chech_takings.push(take_move);
 					self._invalidateMoveOnBoard();
 					self.move = old_move;
+					self.chech_from = old_chech_from;
 				}
 			});
 			if (chech_takings.length > 0) {
@@ -706,10 +707,10 @@ BoardMatrix.prototype._validatePlayer = function() {
 		throw new Meteor.Error(NOT_MY_MOVE, "Not your move");
 	}
 	//needs to be commented out on testing
-	if (this.next_move === 'w' && this.whitePlayerId !== this.userId)
-		throw new Meteor.Error(NOT_MY_MOVE, "User exception");
-	if (this.next_move === 'b' && this.blackPlayerId !== this.userId)
-		throw new Meteor.Error(NOT_MY_MOVE, "User exception");
+	// if (this.next_move === 'w' && this.whitePlayerId !== this.userId)
+	// 	throw new Meteor.Error(NOT_MY_MOVE, "User exception");
+	// if (this.next_move === 'b' && this.blackPlayerId !== this.userId)
+	// 	throw new Meteor.Error(NOT_MY_MOVE, "User exception");
 }
 
 BoardMatrix.prototype._writeToDb = function() {
