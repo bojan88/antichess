@@ -55,6 +55,12 @@ Template.game.cells = function() {
 
 	for (var j = 7; j >= 0; j--) {
 		for (var i = 0; i < 8; i++) {
+			if(board_matrix[i][j].placed.promote) {
+				if(board_matrix[i][j].placed.piece[0] === 'w' && Meteor.user()._id !== game.players.white)
+					delete board_matrix[i][j].placed.promote;
+				else if(board_matrix[i][j].placed.piece[0] === 'b' && Meteor.user()._id !== game.players.black)
+					delete board_matrix[i][j].placed.promote;
+			}
 			cells_array.push({
 				id: columns[i] + (j + 1),
 				color: board_matrix[i][j].color,
