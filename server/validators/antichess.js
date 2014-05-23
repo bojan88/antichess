@@ -449,7 +449,13 @@ BoardMatrix.prototype._validateTakings = function() {
 			var is_take_move = false;
 			_.each(takings, function(take_move) {
 				if (take_move.to[0] === self.chech_from[0] && take_move.to[1] === self.chech_from[1]) { //we can take it - true
-					chech_takings.push(take_move);
+					var old_move = self.move;
+					self.move = take_move;
+					self._moveOnBoard();
+					if(!self._isChech())
+						chech_takings.push(take_move);
+					self._invalidateMoveOnBoard();
+					self.move = old_move;
 				}
 			});
 			if (chech_takings.length > 0) {
