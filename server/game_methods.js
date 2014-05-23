@@ -124,7 +124,12 @@ Meteor.methods({
 		antichess.move(move);
 	},
 	promote: function(piece, position, game_id) {
-		var matrix = Games.findOne(game_id).board;
+		var game = Games.findOne(game_id);
+		var matrix = game.board;
+		if(matrix[position[0]][position[1]].placed.piece[0] === 'b' && this.userId !== game.players.black)
+			return;
+		if(matrix[position[0]][position[1]].placed.piece[0] === 'w' && this.userId !== game.players.white)
+			return;
 
 		var update_obj = {};
 		update_obj['board.' + position[0] + '.' + position[1] + '.placed.piece'] = matrix[position[0]][position[1]].placed.piece[0] + piece;
