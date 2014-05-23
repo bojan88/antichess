@@ -67,6 +67,18 @@ Template.game.cells = function() {
 	return cells_array;
 }
 
+Deps.autorun(function() {
+	$('.cell.last-move-from').removeClass('last-move-from');
+	$('.cell.last-move-to').removeClass('last-move-to');
+	var moves = GameMoves.find().fetch();
+	var last_move = moves.pop();
+	if(!last_move)
+		return;
+	var from_id = getPositionId(last_move.move_coordinates.from);
+	var to_id = getPositionId(last_move.move_coordinates.to);
+	$(from_id).addClass("last-move-from");
+	$(to_id).addClass("last-move-to");
+});
 
 Template.draw_request_modal.events({
 	'click #accept-draw': function() {
@@ -253,8 +265,8 @@ function showTakingMoves(moves) {
 		from_id = getPositionId(moves[i].from);
 		to_id = getPositionId(moves[i].to);
 
-		$('#' + from_id).children('.cell-inner').addClass('taking-from');
-		$('#' + to_id).children('.cell-inner').addClass('taking-to');
+		$(from_id).children('.cell-inner').addClass('taking-from');
+		$(to_id).children('.cell-inner').addClass('taking-to');
 	}
 }
 
@@ -270,5 +282,5 @@ function getPosition(field) {
 }
 
 function getPositionId(position) {
-	return columns[position[0]] + (position[1] + 1);
+	return '#' + columns[position[0]] + (position[1] + 1);
 }

@@ -732,6 +732,7 @@ BoardMatrix.prototype._writeToDb = function() {
 	GameMoves.insert({
 		game_id: this.game._id,
 		move: move_str,
+		move_coordinates: this.move,
 		player: this.next_move
 	});
 

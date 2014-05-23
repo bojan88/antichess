@@ -5,15 +5,15 @@
 		<div id="board">
 			{{#each cells}}
 				<div class="cell {{getColor color clicked}}" id="{{id}}">
-					{{#if piece}}
-						{{#if promote}}
-							{{> promotion_box}}
-						{{else}}
-							<div class="cell-inner">
-									<img src ='/img/pieces/{{piece}}.png' />
-							</div>
+					<div class="cell-inner">
+						{{#if piece}}
+							{{#if promote}}
+								{{> promotion_box}}
+							{{else}}
+								<img src ='/img/pieces/{{piece}}.png' />
+							{{/if}}
 						{{/if}}
-					{{/if}}
+					</div>
 				</div>
 			{{/each}}
 		</div>

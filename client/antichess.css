@@ -348,3 +348,11 @@ a[data-toggle="tab"] > .badge {
 	display: flex;
 	align-items: center;
 }
+
+.last-move-from > .cell-inner {
+	background-color: rgba(247, 248, 135, 0.4);
+}
+
+.last-move-to > .cell-inner {
+	background-color: rgba(247, 248, 135, 0.6);
+}
