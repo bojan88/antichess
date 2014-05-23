@@ -1,5 +1,4 @@
 Template.home.games = function() {
-	console.log(Games.find().fetch())
 	return Games.find({}, {sort: {createdAt: 1}});
 }
 
