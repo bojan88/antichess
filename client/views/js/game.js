@@ -23,7 +23,7 @@ Template.game.rendered = function() {
 	setTimeout(function() {
 		if(Object.keys(Games.findOne().players).length < 2)
 			$("#invite-friend-modal").modal();
-	}, 10000);
+	}, 20000);
 }
 Template.end_game_modal.winning_message = function() {
 	return Session.get("winner");
