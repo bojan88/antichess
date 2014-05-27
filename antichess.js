@@ -4,4 +4,4 @@ Meteor.startup(function() {
 		dashboardRoute: '/',
 		passwordSignupFields: 'USERNAME_AND_EMAIL'
 	});
-})
+});

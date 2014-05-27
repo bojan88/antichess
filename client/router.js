@@ -1,10 +1,7 @@
 gameController = RouteController.extend({
-	game: function() {
+	game: function(pause) {
 		if (Meteor.loggingIn() || !this.ready()) {
 			return this.render('loading');
-		}
-		if(!Meteor.user()) {
-			return AccountsEntry.signInRequired(this);
 		}
 		return this.render(this.route.name);
 	},
@@ -18,8 +15,14 @@ Router.map(function() {
 		controller: 'gameController',
 		action: 'game',
 		layoutTemplate: 'layout',
-		onBeforeAction: function(a) {
+		onBeforeAction: function(pause) {
+			if(this.ready() && !Meteor.loggingIn() && !Meteor.user()) {
+				return AccountsEntry.signInRequired(this, pause);
+			}
 			var self = this;
+			Session.set("requested-rematch", false);
+			Session.set("accepted-rematch", false);
+			Session.set("rejected-rematch", false);
 			Session.set("game_id", this.params._id);
 			if(!Meteor.user()){
 				return;

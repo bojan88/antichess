@@ -71,6 +71,19 @@
 				<div class="modal-body">
 					<p>{{winning_message}} won&hellip;</p>
 				</div>
+				<div class="modal-footer">
+					{{#if session 'requested-rematch'}}
+						<button type="button" id="reject-rematch" class="btn btn-default" data-dismiss="modal">Reject</button>
+						<button type="button" id="accept-rematch" class="btn btn-default" data-dismiss="modal">Accept</button>
+					{{else}}
+						{{#if session 'rejected-rematch'}}
+							<button type="button" id="request-rematch" class="btn btn-primary" data-dismiss="modal" disabled>Rematch</button>
+						{{else}}
+							<button type="button" id="request-rematch" class="btn btn-primary" data-dismiss="modal">Rematch</button>
+						{{/if}}
+
+					{{/if}}
+				</div>
 			</div>
 		</div>
 	</div>

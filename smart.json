@@ -6,6 +6,7 @@
     "font-awesome": {},
     "user-status": {},
     "publish-with-relations": {},
-    "accounts-entry": {}
+    "accounts-entry": {},
+    "streams": {}
   }
 }

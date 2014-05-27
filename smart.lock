@@ -8,7 +8,8 @@
       "font-awesome": {},
       "user-status": {},
       "publish-with-relations": {},
-      "accounts-entry": {}
+      "accounts-entry": {},
+      "streams": {}
     },
     "packages": {
       "iron-router": {
@@ -45,6 +46,11 @@
         "git": "https://github.com/Differential/accounts-entry.git",
         "tag": "v0.7.3",
         "commit": "7facaa045d3720eeeba3420c28e48d5709188fe3"
+      },
+      "streams": {
+        "git": "https://github.com/arunoda/meteor-streams.git",
+        "tag": "v0.1.17",
+        "commit": "9fcbbc9b7bf542827babc92089c19e730892a22f"
       },
       "blaze-layout": {
         "git": "https://github.com/EventedMind/blaze-layout.git",

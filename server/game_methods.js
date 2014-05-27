@@ -73,6 +73,7 @@ Meteor.methods({
 			status: 'waiting',
 			createdAt: new Date().getTime(),
 			startedAt: null,
+			duration: duration,
 			timer_id: timer_id
 		});
 	},

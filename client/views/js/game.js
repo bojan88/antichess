@@ -5,10 +5,10 @@ Template.game.rendered = function() {
 		var game = Games.findOne(Session.get("game_id"));
 		if (game && game.won) {
 			var winner = Meteor.users.findOne(game.won.winner_id);
-			if (!winner)
-				return;
-			Session.set("winner", winner.profile.name);
-			$('#end-game-modal').modal();
+			if (winner) {
+				Session.set("winner", winner.profile.name);
+				$('#end-game-modal').modal();
+			}
 		}
 		if (game && typeof game.draw === 'object') {
 			var opponent_id = (game.draw.requested !== game.players.white) ? game.players.white : game.players.black;
@@ -100,6 +100,32 @@ Template.draw_request_modal.events({
 				alert(err);
 			}
 		});
+	}
+});
+
+Template.end_game_modal.events({
+	'click #request-rematch': function() {
+		stream.emit('events', {
+			game_id: Session.get("game_id"),
+			event: 'rematch',
+			action: 'request'
+		});
+	},
+	'click #accept-rematch': function() {
+		stream.emit('events', {
+			game_id: Session.get("game_id"),
+			event: 'rematch',
+			action: 'accept'
+		});
+		Session.set("accepted-rematch", true);
+	},
+	'click #reject-rematch': function() {
+		stream.emit('events', {
+			game_id: Session.get("game_id"),
+			event: 'rematch',
+			action: 'reject'
+		});
+		Session.set("rejected-rematch", true);
 	}
 });
 
