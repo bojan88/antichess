@@ -443,29 +443,6 @@ BoardMatrix.prototype._validateTakings = function() {
 	var takings = this._getAllTakings();
 	var taking_move = false;
 	var self = this;
-	if (this._isChech()) {
-		if (this.move.to[0] !== this.chech_from[0] && this.move.to[1] !== this.chech_from[1]) {
-			var chech_takings = [];
-			var is_take_move = false;
-			_.each(takings, function(take_move) {
-				if (take_move.to[0] === self.chech_from[0] && take_move.to[1] === self.chech_from[1]) { //we can take it - true
-					var old_move = self.move, old_chech_from = self.chech_from;
-					self.move = take_move;
-					self._moveOnBoard();
-					if(!self._isChech())
-						chech_takings.push(take_move);
-					self._invalidateMoveOnBoard();
-					self.move = old_move;
-					self.chech_from = old_chech_from;
-				}
-			});
-			if (chech_takings.length > 0) {
-				throw new Meteor.Error(TAKE_ERROR, "You must take!!!!!!", chech_takings);
-			} else {
-				return;
-			}
-		}
-	}
 
 	for (var i = 0; i < takings.length; i++) {
 		if (this.move.to[0] === takings[i].to[0] && this.move.to[1] === takings[i].to[1])
@@ -540,7 +517,7 @@ BoardMatrix.prototype._isChechMate = function() {
 			this._invalidateMoveOnBoard();
 		}
 	}
-	
+
 	if (_.isEmpty(moves))
 		return true;
 
