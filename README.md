@@ -24,4 +24,4 @@ The app is running on http://antichess.meteor.com/
 
 
 Feel free to report any bugs, post suggestions, open issues, and fork. Pull requests are wellcome.
-Deploying to a public domain is not permitted.
+Deploying to a public domain is not permitted without my permission.
