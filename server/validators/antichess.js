@@ -520,25 +520,10 @@ BoardMatrix.prototype._isChechMate = function() {
 	var king_position = this._getKingPosition(opponent);
 	var moves = this.matrix_with_pieces[king_position[0]][king_position[1]].getMoves(this.matrix);
 
-	if (_.isEmpty(moves))
-		return true;
-
 	var takings = this._getAllTakings(true);
 	for (var i = 0; i < takings.length; i++) {
 		if (takings[i] && initial_check_from && takings[i].to[0] === initial_check_from[0] && takings[i].to[1] === initial_check_from[1]) {
 			return false;
-		}
-	}
-
-	//try to run
-	for (var i = 0; i < moves.length; i++) {
-		this.move = moves[i];
-		this._moveOnBoard();
-		if (!this._isChech(true)) {
-			this._invalidateMoveOnBoard();
-			return false;
-		} else {
-			this._invalidateMoveOnBoard();
 		}
 	}
 
@@ -555,6 +540,22 @@ BoardMatrix.prototype._isChechMate = function() {
 			this._invalidateMoveOnBoard();
 		}
 	}
+	
+	if (_.isEmpty(moves))
+		return true;
+
+	//try to run
+	for (var i = 0; i < moves.length; i++) {
+		this.move = moves[i];
+		this._moveOnBoard();
+		if (!this._isChech(true)) {
+			this._invalidateMoveOnBoard();
+			return false;
+		} else {
+			this._invalidateMoveOnBoard();
+		}
+	}
+
 	return true;
 }
 
