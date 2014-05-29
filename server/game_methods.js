@@ -121,8 +121,9 @@ Meteor.methods({
 		if (move.from.length !== 2 || move.to.length !== 2)
 			throw new Error("Move position must be array of two");
 
-		var antichess = new Antichess(game_id, this.userId);
-		antichess.move(move);
+		var Board = new BoardMatrix(game_id, this.userId);
+		Board.setMove(move);
+		Board.executeMove();
 	},
 	promote: function(piece, position, game_id) {
 		var game = Games.findOne(game_id);

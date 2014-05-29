@@ -156,21 +156,32 @@ Template.game.events({
 			}
 		} else {
 			var position = getPosition(e.currentTarget.id);
-			Meteor.call('movePiece', {
-				from: clicked,
-				to: position
-			}, Session.get("game_id"), function(err, res) {
-				if (err) {
-					insertAlert(err);
-				} else {
-					removeTakingMoves();
-				}
-			});
 			var update_obj = {};
 			update_obj['board.' + clicked[0] + '.' + clicked[1] + '.clicked'] = false;
 			Games._collection.update(Session.get("game_id"), { //client only with _collection
 				$set: update_obj
 			});
+
+			var Board = new BoardMatrix(Session.get("game_id"), Meteor.userId());
+			Board.setMove({
+				from: clicked,
+				to: position
+			});
+			try {
+				Board.executeMove();
+				Meteor.call('movePiece', {
+					from: clicked,
+					to: position
+				}, Session.get("game_id"), function(err, res) {
+					if (err) {
+						insertAlert(err);
+					} else {
+						removeTakingMoves();
+					}
+				});
+			} catch(err) {
+				insertAlert(err);
+			}
 			clicked = false;
 		}
 	}

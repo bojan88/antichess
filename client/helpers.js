@@ -2,7 +2,6 @@ Deps.autorun(function() {
 	if(!Meteor.userId())
 		return;
 	stream.on(Meteor.userId(), function(message) {
-		console.log(message);
 		if(message.event === 'rematch') {
 			if(message.action === 'request' && !Session.get("rejected-rematch")) {
 				$('#end-game-modal').modal();
