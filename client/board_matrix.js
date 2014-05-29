@@ -16,8 +16,17 @@ BoardMatrix.prototype.executeMove = function() {
 
 BoardMatrix.prototype._writeToDb = function() {
 	var columns = 'abcdefgh'.split('');
+	var capture;
 	var move_obj = {};
 	var piece_letter = this.moved_on_matrix.from.piece[1];
+
+	if (this.moved_on_matrix.to.piece) {
+		capture = true;
+	}
+	var move_str = (piece_letter !== 'P' ? piece_letter : '') + (capture ? 'x' : '') + columns[this.move.to[0]] + (this.move.to[1] + 1);
+
+	if (this._isChech(true))
+		move_str += '+';
 
 	move_obj["board." + this.move.from[0] + '.' + this.move.from[1] + '.placed'] = {};
 	move_obj["board." + this.move.to[0] + '.' + this.move.to[1] + '.placed'] = this.matrix[this.move.to[0]][this.move.to[1]].placed;
@@ -26,5 +35,12 @@ BoardMatrix.prototype._writeToDb = function() {
 
 	Games._collection.update(this.game_id, {
 		$set: move_obj
+	});
+
+	GameMoves.insert({
+		game_id: this.game._id,
+		move: move_str,
+		move_coordinates: this.move,
+		player: this.next_move
 	});
 }

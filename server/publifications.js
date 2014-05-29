@@ -1,3 +1,18 @@
+GameChat.allow({
+	insert: function(userId, doc) {
+		var game = Games.findOne(doc.game_id);
+		return (userId && game && (userId === game.players.white || userId === game.players.black));
+	}
+});
+
+GameMoves.allow({
+	insert: function(userId, doc) {
+		var game = Games.findOne(doc.game_id);
+		var last_move = GameMoves.findOne({game_id: doc.game_id}, {sort: {$natural: -1}});
+		return (userId === game.players.white || userId === game.players.black) && doc.player !== last_move.player;
+	}
+});
+
 Meteor.publish(null, function() {
 	return Meteor.users.find({
 		_id: this.userId
@@ -53,13 +68,6 @@ Meteor.publish("gameChat", function(game_id) {
 	return GameChat.find({
 		game_id: game_id
 	});
-});
-
-GameChat.allow({
-	insert: function(userId, doc) {
-		var game = Games.findOne(doc.game_id);
-		return (userId && game && (userId === game.players.white || userId === game.players.black));
-	}
 });
 
 Meteor.publish("gameUsers", function(user_ids) {
