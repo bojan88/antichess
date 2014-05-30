@@ -272,21 +272,14 @@ body{
 }
 
 .pieces-left img{
-	width: 24px;
-	height: 24px;
+	width: 26px;
+	height: 26px;
 	margin-left: -5px;
 	margin-right: -5px;
 }
 
 .pieces-left {
-	margin-top: 10px;
-}
-
-.white-pieces-left {
-	margin-left: 5px;
-}
-.black-pieces-left {
-	margin-left: -5px;
+	padding: 5px;
 }
 
 .controls {

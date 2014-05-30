@@ -16,7 +16,7 @@
 		<div id="events" class="tab-pane active">
 			<div class="row">
 				<div class="col-md-6">
-					<div class="pieces row">
+					<div class="pieces">
 						<div class="white-pieces-left pieces-left col-md-6">
 						{{#each pieces}}
 							{{#if isWhite color}}
@@ -32,6 +32,13 @@
 						{{/each}}
 						</div>
 					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="moves-container" id="moves-container"></div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6">
 					<div class="controls">
 						{{#if inPlay}}
 							<button type="button" id="draw-button" class="btn btn-default btn-sm" disabled="{{isDrawDisabled}}">Draw</button>
@@ -46,7 +53,9 @@
 					</div>
 				</div>
 				<div class="col-md-6">
-					<div class="moves-container" id="moves-container"></div>
+					<div class="controls">
+						<button type="button" id="report-bug-button" class="btn btn-default btn-sm center-block">Report bug</button>
+					</div>
 				</div>
 			</div>
 			<div class="row">

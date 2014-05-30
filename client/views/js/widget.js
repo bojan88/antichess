@@ -122,7 +122,6 @@ Template.widget.events({
 	'click #resign-button': function(evt) {
 		Meteor.call("resign", Session.get("game_id"), function(err, res) {
 			if (err) {
-				console.warn(err);
 				alert(err);
 			}
 		});
@@ -133,6 +132,9 @@ Template.widget.events({
 				alert(err);
 			}
 		});
+	},
+	'click #report-bug-button': function(evt) {
+		$('#report-bug-modal').modal();
 	}
 });
 

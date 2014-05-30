@@ -193,5 +193,20 @@ Meteor.methods({
 				return DRAW_DONE;
 			}
 		}
+	},
+	'reportBug': function(game_id, text) {
+		var game = Games.findOne(game_id);
+		if(!game) {
+			throw new Meteor.Error("Game not found");
+		}
+		if(game.players.white !== this.userId && game.players.black !== this.userId)
+			throw new Meteor.Error("You are not playing this game");
+		var board = GameBoard.findOne(game.board_id);
+		BugReports.insert({
+			game: game,
+			board: board,
+			text: text,
+			user_id: this.userId
+		});
 	}
 });

@@ -130,6 +130,17 @@ Template.end_game_modal.events({
 	}
 });
 
+Template.report_bug_modal.events({
+	'click #submit-bug-report': function(evt) {
+		var text = $('#bug-problem-text').val();
+		Meteor.call("reportBug", Session.get("game_id"), text, function(err, res) {
+			if(err) {
+				alert(err);
+			}
+		})
+	}
+})
+
 var clicked;
 Template.game.events({
 	'click .cell': function(e) {
