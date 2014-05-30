@@ -95,13 +95,13 @@ BoardMatrix.prototype._validatePromotion = function() {
 	var piece = this.matrix_with_pieces[this.move.to[0]][this.move.to[1]];
 	if (piece && piece.type === 'P') {
 		var move_obj = {};
-		move_obj["board." + this.move.to[0] + '.' + this.move.to[1] + '.placed.promote'] = true;
+		move_obj[this.move.to[0] + '.' + this.move.to[1] + '.placed.promote'] = true;
 		if (this.move.to[1] === 7 && this.matrix_with_pieces[this.move.to[0]][this.move.to[1]].color === 'w') {
-			Games.update(this.game_id, {
+			GameBoard.update(this.board_id, {
 				$set: move_obj
 			});
 		} else if (this.move.to[1] === 0 && this.matrix_with_pieces[this.move.to[0]][this.move.to[1]].color === 'b') {
-			Games.update(this.game_id, {
+			GameBoard.update(this.board_id, {
 				$set: move_obj
 			});
 		}
@@ -160,12 +160,17 @@ BoardMatrix.prototype._isChechMate = function() {
 BoardMatrix.prototype._writeToDb = function() {
 	var move_obj = {};
 
-	move_obj["board." + this.move.from[0] + '.' + this.move.from[1] + '.placed'] = {};
-	move_obj["board." + this.move.to[0] + '.' + this.move.to[1] + '.placed'] = this.matrix[this.move.to[0]][this.move.to[1]].placed;
+	move_obj[this.move.from[0] + '.' + this.move.from[1] + '.placed'] = {};
+	move_obj[this.move.to[0] + '.' + this.move.to[1] + '.placed'] = this.matrix[this.move.to[0]][this.move.to[1]].placed;
 
-	move_obj.next_move = (this.next_move === 'w') ? 'b' : 'w';
+	var next_move = (this.next_move === 'w') ? 'b' : 'w';
 
-	Games.update(this.game_id, {
+	GameBoard.update(this.board_id, {
 		$set: move_obj
 	});
+	Games.update(this.game_id, {
+		$set: {
+			next_move: next_move
+		}
+	})
 }

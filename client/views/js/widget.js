@@ -66,7 +66,9 @@ Template.widget.pieces = function() {
 	var game = Games.findOne(Session.get("game_id"));
 	if (!game)
 		return;
-	var board = game.board;
+	board = GameBoard.findOne({_id: game.board_id});
+	if(!board)
+		return;
 	var pieces = [];
 	for (var i = 0; i < 8; i++) {
 		for (var j = 0; j < 8; j++) {

@@ -51,8 +51,9 @@ Template.game.cells = function() {
 	if (!game) {
 		return;
 	}
-	board_matrix = game.board;
-
+	board_matrix = GameBoard.findOne({_id: game.board_id});
+	if(!board_matrix)
+		return;
 	for (var j = 7; j >= 0; j--) {
 		for (var i = 0; i < 8; i++) {
 			if(board_matrix[i][j].placed.promote) {
@@ -143,22 +144,21 @@ Template.game.events({
 				return;
 			if (this.piece && this.piece[0] === 'b' && game.players.black !== Meteor.user()._id)
 				return;
-
 			clicked = getPosition(e.currentTarget.id);
 			if (!board_matrix[clicked[0]][clicked[1]].placed.piece) {
 				clicked = false;
 			} else {
 				var update_obj = {};
-				update_obj['board.' + clicked[0] + '.' + clicked[1] + '.clicked'] = true;
-				Games._collection.update(Session.get("game_id"), { //client only with _collection
+				update_obj[clicked[0] + '.' + clicked[1] + '.clicked'] = true;
+				GameBoard._collection.update(game.board_id, { //client only with _collection
 					$set: update_obj
 				});
 			}
 		} else {
 			var position = getPosition(e.currentTarget.id);
 			var update_obj = {};
-			update_obj['board.' + clicked[0] + '.' + clicked[1] + '.clicked'] = false;
-			Games._collection.update(Session.get("game_id"), { //client only with _collection
+			update_obj[clicked[0] + '.' + clicked[1] + '.clicked'] = false;
+			GameBoard._collection.update(game.board_id, { //client only with _collection
 				$set: update_obj
 			});
 
@@ -212,7 +212,6 @@ Template.promotion_box.events({
 		Meteor.call("promote", piece, position, Session.get("game_id"), function(err, res) {
 			if (err) {
 				console.warn(err);
-				alert(err);
 			}
 		})
 	}

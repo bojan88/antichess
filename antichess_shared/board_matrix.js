@@ -1,12 +1,13 @@
 BoardMatrix = function(game_id, userId) {
 	this.game_id = game_id;
 	this.game = Games.findOne(this.game_id);
+	this.board_id = this.game.board_id
 
 	if(Meteor.isServer) {
 		this.setStart(); //start the timers
 	}
 
-	this.matrix = this.game.board;
+	this.matrix = GameBoard.findOne(this.board_id);
 	this.matrix_with_pieces = [];
 	this.next_move = this.game.next_move;
 	this.userId = userId;

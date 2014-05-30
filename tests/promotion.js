@@ -4,7 +4,8 @@ suite('pawn promotion test', function() {
         server.eval(function() {
             Meteor.methods({
                 getBoard: function(game_id) {
-                    return Games.findOne(game_id);
+                    var game = Games.findOne(game_id);
+                    return GameBoard.findOne(game.board_id);
                 }
             })
         });
@@ -106,7 +107,7 @@ suite('pawn promotion test', function() {
                                 if (err) {
                                     emit('promote', err);
                                 } else {
-                                    emit('promote', res.board[5][7]);
+                                    emit('promote', res[5][7]);
                                 }
                             });
                         }

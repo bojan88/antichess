@@ -64,10 +64,11 @@ Meteor.methods({
 			white: duration_ms,
 			black: duration_ms
 		});
+		var board_id = GameBoard.insert(board_matrix);
 		return Games.insert({
 			next_move: 'w',
 			players: players,
-			board: board_matrix,
+			board_id: board_id,
 			creator: this.userId,
 			online: true,
 			status: 'waiting',
@@ -127,17 +128,17 @@ Meteor.methods({
 	},
 	promote: function(piece, position, game_id) {
 		var game = Games.findOne(game_id);
-		var matrix = game.board;
+		var matrix = GameBoard.findOne(game.board_id);
 		if(matrix[position[0]][position[1]].placed.piece[0] === 'b' && this.userId !== game.players.black)
 			return;
 		if(matrix[position[0]][position[1]].placed.piece[0] === 'w' && this.userId !== game.players.white)
 			return;
 
 		var update_obj = {};
-		update_obj['board.' + position[0] + '.' + position[1] + '.placed.piece'] = matrix[position[0]][position[1]].placed.piece[0] + piece;
+		update_obj[position[0] + '.' + position[1] + '.placed.piece'] = matrix[position[0]][position[1]].placed.piece[0] + piece;
 		var unset_obj = {};
-		unset_obj['board.' + position[0] + '.' + position[1] + '.placed.promote'] = 1;
-		Games.update(game_id, {
+		unset_obj[position[0] + '.' + position[1] + '.placed.promote'] = 1;
+		GameBoard.update(game.board_id, {
 			$set: update_obj,
 			$unset: unset_obj
 		});

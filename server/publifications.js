@@ -9,7 +9,8 @@ GameMoves.allow({
 	insert: function(userId, doc) {
 		var game = Games.findOne(doc.game_id);
 		var last_move = GameMoves.findOne({game_id: doc.game_id}, {sort: {$natural: -1}});
-		return (userId === game.players.white || userId === game.players.black) && doc.player !== last_move.player;
+		var next_move = last_move ? (last_move.player === 'w' ? 'b' : 'w') : 'w';
+		return (userId === game.players.white || userId === game.players.black) && doc.player === next_move;
 	}
 });
 
@@ -25,9 +26,15 @@ Meteor.publish(null, function() {
 });
 
 Meteor.publish("game", function(game_id) {
-	return Games.find({
+	var gameCursor = Games.find({
 		_id: game_id
 	});
+	var game = gameCursor.fetch()[0];
+	var boardCursor = GameBoard.find({_id: game.board_id});
+	return [
+		gameCursor,
+		boardCursor
+	];
 });
 
 Meteor.publish("pendingGames", function() {
