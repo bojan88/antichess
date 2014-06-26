@@ -142,7 +142,7 @@ body{
 	width: 512px;
 	margin-top: 5px;
 	margin-bottom: 5px;
-	padding-left: 50px;
+	margin: auto;
 	height: 35px;
 }
 
@@ -348,4 +348,48 @@ a[data-toggle="tab"] > .badge {
 
 .last-move-to > .cell-inner {
 	background-color: rgba(247, 248, 135, 0.6);
+}
+
+
+@media (max-width: 600px) {
+	#board {
+		width: 336px;
+		height: 336px;
+	}
+	.player-info-box {
+		width: 336px;
+	}
+	.cell {
+		width: 42px;
+		height: 42px;
+	}
+	.cell-inner > img {
+		width: 38px;
+		height: 38px;
+	}
+}
+
+@media (max-width: 991px) {
+	.widget {
+		margin: auto;
+		margin-top: 10px
+	}
+}
+
+@media (max-width: 1199px) and (min-width: 992px) {
+	#board {
+		width: 464px;
+		height: 464px;
+	}
+	.player-info-box {
+		width: 464px;
+	}
+	.cell {
+		width: 58px;
+		height: 58px;
+	}
+	.cell-inner > img {
+		width: 54px;
+		height: 54px;
+	}
 }
