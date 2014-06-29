@@ -367,6 +367,12 @@ a[data-toggle="tab"] > .badge {
 		width: 38px;
 		height: 38px;
 	}
+	#games-list {
+		width: 300px;
+	}
+	.game-options-btns:first-child {
+		margin-bottom: 10px;
+	}
 }
 
 @media (max-width: 991px) {
