@@ -3,9 +3,11 @@ gameController = RouteController.extend({
 		if (Meteor.loggingIn() || !this.ready()) {
 			return this.render('loading');
 		}
+        GAnalytics.pageview();
 		return this.render(this.route.name);
 	},
 	home: function() {
+        GAnalytics.pageview();
 		return this.render(this.route.name);
 	}
 });

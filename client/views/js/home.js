@@ -40,6 +40,7 @@ Template.login_modal.events({
 				console.warn(err);
 				return;
 			}
+            GAnalytics.event("games","new_game");
 			Router.go("game", {_id: res});
 		});
 	}

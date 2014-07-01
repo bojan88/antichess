@@ -125,6 +125,7 @@ Template.widget.events({
 				alert(err);
 			}
 		});
+        GAnalytics.event("games","resign");
 	},
 	'click #draw-button': function(evt) {
 		Meteor.call("draw", Session.get("game_id"), DRAW_REQUEST, function(err, res) {

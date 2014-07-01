@@ -93,6 +93,7 @@ Template.draw_request_modal.events({
 			if (err) {
 				alert(err);
 			}
+            GAnalytics.event("games","draw_accepted");
 		});
 	},
 	'click #reject-draw': function() {
@@ -100,6 +101,7 @@ Template.draw_request_modal.events({
 			if (err) {
 				alert(err);
 			}
+            GAnalytics.event("games","new_rejected");
 		});
 	}
 });
@@ -111,6 +113,7 @@ Template.end_game_modal.events({
 			event: 'rematch',
 			action: 'request'
 		});
+        GAnalytics.event("games","rematch_requested");
 	},
 	'click #accept-rematch': function() {
 		stream.emit('events', {
@@ -119,6 +122,7 @@ Template.end_game_modal.events({
 			action: 'accept'
 		});
 		Session.set("accepted-rematch", true);
+        GAnalytics.event("games","rematch_accepted");
 	},
 	'click #reject-rematch': function() {
 		stream.emit('events', {
@@ -127,6 +131,7 @@ Template.end_game_modal.events({
 			action: 'reject'
 		});
 		Session.set("rejected-rematch", true);
+        GAnalytics.event("games","rematch_rejected");
 	}
 });
 
@@ -137,7 +142,8 @@ Template.report_bug_modal.events({
 			if(err) {
 				alert(err);
 			}
-		})
+            GAnalytics.event("bugs","new_bug");
+		});
 	}
 })
 
