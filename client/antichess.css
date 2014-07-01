@@ -6,7 +6,8 @@ html,body {
 
 body{
 	margin:0;
-	padding:0
+	padding:0;
+    background-color: #E9EAED;
 }
 
 .navbar {
@@ -140,9 +141,9 @@ body{
 
 .player-info-box {
 	width: 512px;
+	margin: auto;
 	margin-top: 5px;
 	margin-bottom: 5px;
-	margin: auto;
 	height: 35px;
 }
 
@@ -300,6 +301,9 @@ body{
 #games-list {
 	width: 500px;
 	margin-top: 50px;
+    background-color: #FFF;
+    padding: 20px;
+    border-radius: 5px;
 }
 
 #new-game-controls {
